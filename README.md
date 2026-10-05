@@ -1,6 +1,10 @@
 # Veritas Gold prototype
 
+[![CI](https://github.com/veritas-bank-system/veritas-gold-prototype/actions/workflows/ci.yml/badge.svg)](https://github.com/veritas-bank-system/veritas-gold-prototype/actions/workflows/ci.yml)
+
 A separate, static interface prototype based on the Veritas Gold central-bank and participant-persona menu specifications. It covers a representative Phase 1 slice and the eight Phase 1 participant personas.
+
+**Live demo:** <https://veritas-bank-system.github.io/veritas-gold-prototype/> — serves the same synthetic sandbox as a local run. No backend, no data collection.
 
 ## Run locally
 
