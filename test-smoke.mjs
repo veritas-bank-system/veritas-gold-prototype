@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
-import { roles, roleLabels, bars, bonds, accounts, approvals, settlements, cases, events } from "./data.js";
+import { roles, roleLabels, bars, bonds, accounts, approvals, settlements, cases, events, fxRates, repoTrades, goldFinancing } from "./data.js";
 
 const expectedRoles = ["operator", "governor", "commercial", "bullion", "custodian", "settlement", "regulator", "auditor"];
 assert.deepEqual(Object.keys(roles), expectedRoles);
@@ -21,14 +21,22 @@ assert.ok(approvals.every(x => x.id && x.requester && x.risk && x.status && x.ev
 assert.equal(settlements.length, 3);
 assert.equal(cases.length, 3);
 assert.equal(events.length, 4);
+assert.equal(fxRates.length, 5);
+assert.ok(fxRates.every(x => x.pair && x.bid < x.ask && x.tenor && x.status === "Indicative"));
+assert.equal(repoTrades.length, 3);
+assert.ok(repoTrades.every(x => ["Repo", "Reverse repo"].includes(x.side) && x.haircut && x.status));
+assert.equal(goldFinancing.length, 3);
+assert.ok(goldFinancing.every(x => ["Loan", "Lease"].includes(x.type) && x.counterparty && x.rate));
 
 const app = await readFile(new URL("./app.js", import.meta.url), "utf8");
 const html = await readFile(new URL("./index.html", import.meta.url), "utf8");
 const css = await readFile(new URL("./styles.css", import.meta.url), "utf8");
 const readme = await readFile(new URL("./README.md", import.meta.url), "utf8");
-for (const page of ["Dashboard", "Tasks & approvals", "Gold & bullion", "Government bonds", "Settlement accounts", "Settlement monitor", "Custody & vaults", "Risk & limits", "Compliance", "Audit center", "Reports", "Phase 2 workspaces"]) assert.ok(app.includes(`"${page}"`), `page covered: ${page}`);
+for (const page of ["Dashboard", "Tasks & approvals", "Gold & bullion", "Government bonds", "Settlement accounts", "Settlement monitor", "Custody & vaults", "Risk & limits", "Compliance", "Audit center", "Reports", "Phase 2 workspaces", "FX & money markets", "Repo & collateral", "Gold financing"]) assert.ok(app.includes(`"${page}"`), `page covered: ${page}`);
 for (const term of ["liveIntegrations:false", "environment:\"Sandbox\"", "Synthetic", "Read-only scope", "No counterparty contact or fund reservation", "PREVIOUS PERSONA", "NEW PERSONA"]) assert.ok(app.includes(term), `safety label present: ${term}`);
 assert.ok(!/window\.open\(|fetch\(|XMLHttpRequest|https?:\/\//.test(app), "application does not contact external services");
+assert.ok(app.includes("not executable"), "Phase 2 rates are labelled not executable");
+assert.ok(app.includes("Phase 2 workspaces"), "roadmap page still present");
 assert.ok(html.includes("Sandbox · synthetic demonstration"));
 assert.ok(html.includes("type=\"module\""));
 assert.ok(css.includes("@media(max-width:680px)"));

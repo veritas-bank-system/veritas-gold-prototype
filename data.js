@@ -47,3 +47,20 @@ export const events = [
  {time:"09:56:31",actor:"J. Patel",event:"Evidence annotation added",target:"CMP-2025-0079",detail:"Auditor workpaper · synthetic",kind:"Evidence"},
  {time:"09:32:09",actor:"R. Silva",event:"Settlement exception recorded",target:"STL-2025-03812",detail:"Custodian proof pending",kind:"Exception"}
 ];
+export const fxRates = [
+ {pair:"XAU/USD · Loco London",bid:3280.90,ask:3281.60,forwardPts:"—",tenor:"Spot",unit:"USD / oz",status:"Indicative"},
+ {pair:"EUR/USD",bid:1.0842,ask:1.0847,forwardPts:"−12.4",tenor:"1M forward",unit:"USD",status:"Indicative"},
+ {pair:"USD/CHF",bid:0.8792,ask:0.8799,forwardPts:"+8.2",tenor:"1M forward",unit:"CHF",status:"Indicative"},
+ {pair:"GBP/USD",bid:1.2648,ask:1.2655,forwardPts:"−21.0",tenor:"1M forward",unit:"USD",status:"Indicative"},
+ {pair:"USD/SGD",bid:1.3452,ask:1.3461,forwardPts:"+15.6",tenor:"1M forward",unit:"SGD",status:"Indicative"}
+];
+export const repoTrades = [
+ {id:"RPO-2025-0142",side:"Repo",collateral:"Norland Government Bond 2030",isin:"XS2048117204",cash:"$250,000,000 USD",haircut:"2.0%",rate:"3.82% p.a.",maturity:"Overnight · 06 Oct 2026",status:"In progress"},
+ {id:"RPO-2025-0139",side:"Reverse repo",collateral:"ESF Sustainability Bond 2032",isin:"EU000A3K4D57",cash:"€80,000,000 EUR",haircut:"3.0%",rate:"2.98% p.a.",maturity:"07 Oct 2026",status:"Settled"},
+ {id:"RPO-2025-0136",side:"Repo",collateral:"Allocated gold · 1,200 oz",isin:"VG-CRB-004281",cash:"$3,940,000 USD",haircut:"4.5%",rate:"3.55% p.a.",maturity:"08 Oct 2026",status:"Awaiting collateral"}
+];
+export const goldFinancing = [
+ {id:"GLD-LS-2025-021",type:"Lease",counterparty:"Auric Bullion Bank",quantity:"12,000 fine oz",rate:"1.85% p.a.",tenor:"3 months",value:"$39.4M",status:"Active"},
+ {id:"GLD-LN-2025-009",type:"Loan",counterparty:"Meridian Commercial Bank",quantity:"5,000 fine oz",rate:"2.40% p.a.",tenor:"6 months",value:"$16.4M",status:"Active"},
+ {id:"GLD-LS-2025-018",type:"Lease",counterparty:"Continental Settlement Bank",quantity:"2,500 fine oz",rate:"1.72% p.a.",tenor:"1 month",value:"$8.2M",status:"Matured"}
+];
